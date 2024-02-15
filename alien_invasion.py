@@ -8,10 +8,12 @@ from button import Button
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
+from buttons import Difficulty_Button
 
 # leveling up page-285
 
-
+blue_button = pygame.image.load('images/blue_button.bmp')
+red_button = pygame.image.load('images/red_button.bmp')
 
 class AlienInvasion:
     """Overall class to manage game assets and behavior"""
@@ -36,6 +38,9 @@ class AlienInvasion:
 
         # Maeke the play button.
         self.play_button = Button(self, "Play")
+        self.easy_button = Difficulty_Button(self, 500, 250, blue_button, 0.1)
+        self.hard_button = Difficulty_Button(self, 500, 450, red_button, 0.1 )
+
 
         # Start alien invasion in an active state
         self.game_active = True
@@ -259,6 +264,8 @@ class AlienInvasion:
         # Draw the play button if the game is inactive.
         if not self.stats.game_active:
             self.play_button.draw_button()
+            self.easy_button.draw()
+            self.hard_button.draw()
 
         # Make the most recently drawn screen visible.
         pygame.display.flip()
